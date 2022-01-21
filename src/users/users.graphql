@@ -1,0 +1,95 @@
+type User {
+  id: String
+  firstName: String
+  lastName: String
+  email: String
+  password: String
+  address: String
+  city: String
+  state: String
+  zip: String
+  imageUrl: String
+  country: String
+  isVerified: Boolean
+  role: String
+  social1: String
+  social2: String
+  socialType1: String
+  socialType2: String
+  bank: String
+  aba: String
+  account: String
+  sweeps: Sweep
+}
+
+input UserInput {
+  firstName: String
+  lastName: String
+  email: String
+  password: String
+  address: String
+  city: String
+  state: String
+  zip: String
+  imageUrl: String
+  country: String
+  isVerified: Boolean
+  role: String
+  social1: String
+  social2: String
+  socialType1: String
+  socialType2: String
+  bank: String
+  aba: String
+  account: String
+}
+
+input UserUpdate {
+  id: String!
+  firstName: String
+  lastName: String
+  email: String
+  password: String
+  address: String
+  city: String
+  state: String
+  zip: String
+  imageUrl: String
+  country: String
+  isVerified: Boolean
+  role: String
+  social1: String
+  social2: String
+  socialType1: String
+  socialType2: String
+  bank: String
+  aba: String
+  account: String
+}
+
+input LoginInput {
+  email: String!
+  password: String
+}
+
+type Query {
+  user(id: String!): User
+  users: [User]
+  admin(id: String!): User
+  admins: [User]
+  influencer(id: String!): User
+  influencers: [User]
+  userByEmail(email: String!): User
+  usersByEmails(emails: [String]): [User]
+}
+
+type Mutation {
+  login(input: LoginInput): User
+  addUser(input: UserInput): User
+  updateUser(input: UserUpdate): User
+  deleteUser(id: String!): Boolean
+}
+
+type Subscription {
+  usersSubscription(userId: String!): User
+}

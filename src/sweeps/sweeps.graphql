@@ -1,0 +1,71 @@
+scalar Upload
+
+type File {
+  filename: String!
+  mimetype: String!
+  encoding: String!
+}
+
+type Sweep {
+  id: String
+  title: String
+  startDate: String
+  endDate: String
+  description: String
+  file1: File
+  file2: File
+  file3: File
+  file4: File
+  file5: File
+  file6: File
+  influencer: User
+  winner: User
+}
+
+input SweepI {
+  startDate: String
+  endDate: String
+  description: String
+}
+
+input SweepInput {
+  sweep: SweepI
+  influencer: UserInput
+  file1: Upload
+  file2: Upload
+  file3: Upload
+  file4: Upload
+  file5: Upload
+  file6: Upload
+}
+
+input SweepFiles {
+  file1: Upload
+  file2: Upload
+  file3: Upload
+  file4: Upload
+  file5: Upload
+  file6: Upload
+}
+
+input SweepUpdate {
+  id: String!
+  title: String
+  startDate: String
+  endDate: String
+  description: String
+  influencerId: String
+  winnerId: String
+}
+
+type Query {
+  sweep(id: String!): Sweep
+  sweeps: [Sweep]
+}
+
+type Mutation {
+  addSweep(input: SweepInput): Sweep
+  addSweepFiles(id: String! files: [Upload]): Sweep
+  updateSweep(input: SweepUpdate): Sweep
+  deleteSweep(id: String!): Boolean
+}
